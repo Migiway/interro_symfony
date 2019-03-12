@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Liste des type de contracts
+{% endblock %}
+
+{% block gsb_body %}
+    <h2>Liste des types de contracts :</h2>
+
+    <ul>
+        {% for contract in contracts %}
+            <li>
+                <a href="{{ path('edit_contract', {contract:contract.id}) }}">{{ contract.label }}</a>
+                <br>
+                <a href="{{ path('delete_contract', {contract:contract.id}) }}" style="color: red"><small>Supprimer</small></a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucun contract disponible</li>
+        {% endfor %}
+    </ul>
+
+    {# On affiche le(s) message(s) flash dont le nom est "info" #}
+    {% for message in app.session.flashbag.get('info') %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

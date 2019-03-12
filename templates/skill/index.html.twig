@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Liste des compétences
+{% endblock %}
+
+{% block gsb_body %}
+    <h2>Liste des compétences :</h2>
+
+    <ul>
+        {% for skill in skills%}
+            <li>
+                <a href="{{ path('edit_skill', {skill:skill.id}) }}">{{ skill.label }}</a>
+                <br>
+                <a href="{{ path('delete_skill', {skill:skill.id}) }}" style="color: red"><small>Supprimer</small></a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucune compétence disponible</li>
+        {% endfor %}
+    </ul>
+
+    {# On affiche le(s) message(s) flash dont le nom est "info" #}
+    {% for message in app.session.flashbag.get('info') %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

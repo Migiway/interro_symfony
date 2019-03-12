@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Liste des jobs
+{% endblock %}
+
+{% block gsb_body %}
+    <h2>Liste des jobs :</h2>
+
+    <ul>
+        {% for job in jobs %}
+            <li>
+                <a href="{{ path('edit_job', {job:job.id}) }}">{{ job.label }}</a>
+                <br>
+                <a href="{{ path('delete_job', {job:job.id}) }}" style="color: red"><small>Supprimer</small></a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucun job disponible</li>
+        {% endfor %}
+    </ul>
+
+    {# On affiche le(s) message(s) flash dont le nom est "info" #}
+    {% for message in app.session.flashbag.get('info') %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

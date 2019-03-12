@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Liste des candidatures
+{% endblock %}
+
+{% block gsb_body %}
+    <h2>Liste des candidatures :</h2>
+
+    <ul>
+        {% for candidature in candids %}
+            <li>
+                <a href="{{ path('edit_candidature', {candidature:candidature.id}) }}">Candidature n° {{ candidature.id}}</a>
+                <br>
+                <a href="{{ path('delete_candidature', {candidature:candidature.id}) }}" style="color: red"><small>Supprimer</small></a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucune candidature disponible</li>
+        {% endfor %}
+    </ul>
+
+    {# On affiche le(s) message(s) flash dont le nom est "info" #}
+    {% for message in app.session.flashbag.get('info') %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

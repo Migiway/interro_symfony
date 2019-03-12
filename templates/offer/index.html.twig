@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Liste des offres
+{% endblock %}
+
+{% block gsb_body %}
+    <h2>Liste des offres :</h2>
+
+    <ul>
+        {% for offer in offers %}
+            <li>
+                <a href="{{ path('edit_offer', {offer:offer.id}) }}">{{ offer.title }}</a>
+                <br>
+                <a href="{{ path('delete_offer', {offer:offer.id}) }}" style="color: red"><small>Supprimer</small></a>
+            </li>
+            <br>
+        {% else %}
+            <li>Aucune offre disponible</li>
+        {% endfor %}
+    </ul>
+
+    {# On affiche le(s) message(s) flash dont le nom est "info" #}
+    {% for message in app.session.flashbag.get('info') %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

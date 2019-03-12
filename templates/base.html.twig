@@ -1,12 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Interrogation Symfony{% endblock %}</title>
+    {% block stylesheets %}
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="container">
+    <div id="header" class="jumbotron">
+        <h2></h2>
+    </div>
+    <div class="row">
+        <div id="menu" class="col-md-3">
+            <h3><a href="/">Accueil</a></h3>
+
+            <h3>Gérer les jobs</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('job') }}">Liste des jobs</a></li>
+                <li><a href="{{ path('create_job') }}">Ajouter un job</a></li>
+            </ul>
+
+            <h3>Gérer les contrats</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('contract') }}">Liste des contrats</a></li>
+                <li><a href="{{ path('create_contract') }}">Ajouter un contrat</a></li>
+            </ul>
+            <h3>Gérer les compétences</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('skill') }}">Liste des compétences</a></li>
+                <li><a href="{{ path('create_skill') }}">Ajouter une compétence</a></li>
+            </ul>
+            <h3>Gérer les offres</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('offer') }}">Liste des offres</a></li>
+                <li><a href="{{ path('create_offer') }}">Ajouter une offre</a></li>
+            </ul>
+            <h3>Gérer les candidatures</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('candidature') }}">Liste des candidatures</a></li>
+                <li><a href="{{ path('create_candidature') }}">Ajouter une candidature</a></li>
+            </ul>
+        </div>
+        <div id="content" class="col-md-9">
+            {% block body %} {% endblock %}
+        </div>
+
+
+
+    </div>
+
+    <hr>
+    <footer>
+        <p> © {{'now'|date('Y') }} Marc Iguenane</p>
+    </footer>
+</div>
+{% block javascripts %}
+    {# Lignes JavaScript permettant d'utiliser des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% endblock %}
+</body>
 </html>

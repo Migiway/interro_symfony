@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent()}} - Gestion des objectifs commerciaux
+{% endblock %}
+
+{% block body %}
+    {% block soustitre %}
+        {# On définit un sous-titre commun à toutes les pages du bundle #}
+
+    {% endblock %}
+    <hr>
+    {% block gsb_body %}
+        {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+    {% endblock %}
+{% endblock %}
